@@ -1,5 +1,8 @@
 package com.sio;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class PracticeArrayVsList {
@@ -24,6 +27,13 @@ public class PracticeArrayVsList {
                     System.out.println("Convert an array to a list");
                     System.out.println("---------------------------------------------");
                     //Exercise 1 : Enter your code here
+                    int[] tableau = {10, 20, 30, 40, 50};
+                    List<Integer> liste = new ArrayList<>();
+                    for (int nombre : tableau) {
+                        liste.add(nombre);
+                    }
+                    System.out.println("Liste convertie depuis le tableau : " + liste);
+
                     System.out.println("---------------------------------------------");
                     break;
                 case 2:
@@ -32,6 +42,15 @@ public class PracticeArrayVsList {
                     System.out.println("Convert a list to an array");
                     System.out.println("---------------------------------------------");
                     //Exercise 2 : Enter your code here
+                    List<String> listeNoms = Arrays.asList("Alice", "Bob", "Charlie", "Diana");
+                    //String[] tableauNoms = listeNoms.toArray(new String[0]);
+
+                    String[] tableauNoms = new String[listeNoms.size()];
+                    listeNoms.toArray(tableauNoms);
+
+                    System.out.println("Tableau converti depuis la liste : " + Arrays.toString(tableauNoms));
+
+
                     System.out.println("---------------------------------------------");
                     break;
                 case 3:
@@ -40,6 +59,19 @@ public class PracticeArrayVsList {
                     System.out.println("Challenge");
                     System.out.println("---------------------------------------------");
                     //Exercise 3 : Enter your code here
+                    System.out.println("Entrez des nombres (séparés par des espaces) :");
+                    String input = scanner.nextLine();
+                    String[] inputArray = input.split(" ");
+
+                    // Conversion en liste d'entiers
+                    List<Integer> nombres = new ArrayList<>();
+                    for (String s : inputArray) {
+                        nombres.add(Integer.parseInt(s));
+                    }
+
+                    // Suppression des nombres pairs
+                    List<Integer> nombresImpairs = supprimerNombresPairs(nombres);
+                    System.out.println("Liste avec uniquement les nombres impairs : " + nombresImpairs);
                     System.out.println("---------------------------------------------");
                     break;
                 case 0:
@@ -50,5 +82,15 @@ public class PracticeArrayVsList {
                     break;
             }
         }
+    }
+
+    private static List<Integer> supprimerNombresPairs(List<Integer> liste) {
+        List<Integer> result = new ArrayList<>();
+        for (int nombre : liste) {
+            if (nombre % 2 != 0) {
+                result.add(nombre);
+            }
+        }
+        return result;
     }
 }
